@@ -27,35 +27,47 @@
     
     <header>
         <!-- mobile navBar -->
-        <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-gradient-to-r from-dark via-black to-purple from-10% px-4 sm:px-8 md:px-16 lg:px-40 lg:hidden fixed top-0 bg-dark z-40 inset-x-0">
-            <div class="flex items-center justify-between p-4">
-                <div>
-                    <a href="#">
-                        <img class="" src="assets/logo.png" alt="">
-                    </a>
+        <nav x-data="{ open: false }" @keydown.window.escape="open = false" class=" px-4  lg:hidden fixed top-0  z-40 inset-x-0 bg-black">
+            <div class="flex items-center justify-between py-6">
+                <div class=" flex gap-x-2 items-center">
+                <!-- offcanvase open button -->
+                    <button type="button" class="text-white mt-2" @click="open = true">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                <!-- end offcanvase open button -->
+                    <div>
+                        <img class="h-10" src="assets/logo.png" alt="">
+                    </div>
                 </div>
                 <div class="">
-                    <div  class=" flex relative py-3 sm:max-w-xl gap-2 mx-auto">
-                        <!-- offcanvase open button -->
-                        <div class="shrink-0 block lg:hidden">
-                            <button type="button" class="text-gray-500 h-10 w-10 " @click="open = true">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
-                                  </svg>
-                                  
-                            </button>
-                        </div>
-                    <!-- end offcanvase open button -->
-                    </div>
+                    <a href="#contact_us" class="flex items-center bg-purple hover:bg-transparent border-2 border-transparent hover:border-white duration-300 rounded-md py-3 px-4 text-white">
+                        <p   class="font-bold font-Quicksand  bordedr  text-center mr-3 md:mr-0">LET'S TALK</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                    </a>
                 </div>
             </div>
             <!-- Mobile offcanvase dialog -->
-            <div x-show="open" class="relative z-40 lg:hidden" x-ref="dialog" aria-modal="true" style="display: none;">
+            <div x-show="open" class="relative z-40 lg:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog" aria-modal="true">
+              <div class="fixed inset-0 z-40 flex">
                 <div class="fixed inset-0 z-40 flex">
-                    <div x-show="open" x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="relative ml-auto flex h-full w-full max-w-[375px]	flex-col overflow-y-auto bg-green py-10" @click.away="open = false" style="display: none;">
+            <div x-show="open" 
+                x-transition:enter="transition ease-in-out duration-300 transform" 
+                x-transition:enter-start="-translate-x-full" 
+                x-transition:enter-end="translate-x-0" 
+                x-transition:leave="transition ease-in-out duration-300 transform" 
+                x-transition:leave-start="translate-x-0" 
+                x-transition:leave-end="-translate-x-full"
+                x-description="Off-canvas menu, show/hide based on off-canvas menu state." class="relative flex w-full md:w-2/5 h-full flex-col overflow-y-auto bg-dark pb-12 shadow-xl" @click.away="open = false" >
                         <!-- offcanvase close -->
-                        <div class="flex items-center justify-end px-4">
-                            <button type="button" class=" rounded-full bg-white text-green hover:bg-sky  transition  duration-700 ease-in-out h-10 w-10 flex justify-center items-center" @click="open = false">
+                        <div class="flex items-center justify-between p-8">
+                            <a href="#" class="flex gap-3 items-center">
+                                <img class="h-14 rounded-full" src="assets/logo.png" alt="Furniture Logo">
+                            </a>
+                            <button type="button" class=" rounded-full bg-purple text-white transition  duration-700 ease-in-out h-10 w-10 flex justify-center items-center" @click="open = false">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
@@ -63,24 +75,36 @@
                         </div>
                         <!-- end offcanvase close -->
                         <!-- offcanvases -->
-                        <form class="mt-20">
-                            <ul class="flex flex-col text-center justify-center w-full space-y-8 px-10 text-white font-Quicksand text-1xl">
+                        <form class="mt-10">
+                            <ul class="flex flex-col text-center justify-center w-full space-y-8 px-10 text-white">
                                 <li>
-                                    <a @click="open = false" href="#home">
-                                        <img class="h-[48px] w-[223.571px] mx-auto" src="assets/offcanvas-logo.svg" alt="">
+                                    <a a @click="open = false" href="" class="hover:text-purple duration-500">Why Us</a>
+                                </li>
+                                <li>
+                                    <a a @click="open = false" href="" class="hover:text-purple duration-500">Case studies</a>
+                                </li>
+                                <li>
+                                    <a a @click="open = false" href="" class="hover:text-purple duration-500">Testimonials</a>
+                                </li>
+                                <li>
+                                    <a a @click="open = false" href="" class="hover:text-purple duration-500">FAQ</a>
+                                </li>
+                                </li>
+                                <li>
+                                    <a a @click="open = false" href="#contact_us" class=" inline-flex items-center bg-purple hover:bg-transparent border-2 border-transparent hover:border-white duration-300 rounded-md py-3 px-4 text-white">
+                                        <p   class="font-bold font-Quicksand  bordedr  text-center mr-3 md:mr-0">LET'S TALK</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                                        </svg>
                                     </a>
                                 </li>
-                                <li><a @click="open = false" class="" href="#home">Home</a></li>
-                                <li><a @click="open = false"  href="#about_us">About Us</a></li>
-                                <li><a @click="open = false"  href="#we_offer">We Offer</a></li>
-                                <li><a @click="open = false"  href="#contact_us">Contact us </a></li>
-                                <li><a @click="open = false"  href="#contact_us" class=" font-bold  border-2 border-white rounded-full py-3 px-12 text-center mr-3 md:mr-0">LET'S TALK</a></li>
                             </ul>
                         </form>
                     </div>
                 </div>
+              </div>
             </div>
-            <!-- end Mobile offcanvase dialog -->
+            <!-- Mobile offcanvase dialog -->
         </nav>
         <!-- desktop navbar -->		
         <nav class="bg-gradient-to-r from-black  to-dark from-10% fixed w-full z-20 top-0 left-0 lg:max-w-8xl hidden lg:block  border-y border-gray-700">
@@ -163,20 +187,21 @@
                 <p class="text-white text-center text-xl">Trusted By 300+ Bussiness</p>
                   <!-- Swiper -->
                 <div id="client" class=" overflow-hidden">
-                    <div class="swiper-wrapper text-white">
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 font-bold ">uplift</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 italic font-bold">MOJO</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
-                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Resize me!</div>
+                    <div class="swiper-wrapper text-white font-bold">
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700  ">uplift</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 italic ">MOJO</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 ">Daniel D. paul</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 ">Mothership</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Mothership</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 ">DigitlSpring</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 ">uplift</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 italic">MOJO</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Daniel D. paul</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Mothership</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700">Mothership</div>
+                    <div class="swiper-slide px-7 py-6 border hover:bg-white hover:text-purple rounded-md duration-700 ">DigitlSpring</div>
                     </div>
                 </div>
-            
                 <!-- Swiper JS -->
             </div>
         </section>
@@ -185,7 +210,10 @@
             <div class="space-y-8">
                 <div class="text-white space-y-4">
                     <p class="tracking-[.40em] font-semibold text-violet ">SERVICE</p>
-                    <p class="text-4xl ">Exceeding Expectations</p>
+                    <div class="flex items-center gap-x-10 lg:gap-x-20">
+                        <p class="text-4xl ">Exceeding Expectations</p>
+                        <img class="h-10 bottom-0 rotate-3" src="assets/Untitled (40 x 40 px).png" alt="star">
+                    </div>
                     <p class="text-xl">We're not just another agency; we're your path to exeptional web project.</p>
                 </div>
                 <div class="splide " id="example-grid">
@@ -579,7 +607,7 @@
                 </div>
                 <div class="col-span-12 lg:col-span-3 flex justify-center">
                     <div class="space-y-4 text-white mt-16">
-                        <p class="text-3xl text-center">Links</p>
+                        <p class="text-3xl text-start lg:text-center">Links</p>
                         <ul class="flex justify-center lg:justify-start gap-x-4">
                             <li class=" hover:bg-sky rounded-full">
                                 <a href="#" class="text-white">
